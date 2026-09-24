@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Ticket Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<div class="container">
+
+    <h1>ONLINE TICKET BOOKING</h1>
+    <p class="subtitle">Ticket Booking System</p>
+
+    <div class="form-box">
+
+        <label>Passenger Name</label>
+        <input type="text" id="passenger" placeholder="Enter passenger name">
+
+        <!-- FROM + TO -->
+        <div class="row">
+            <div class="field">
+                <label>From</label>
+                <select id="from">
+                    <option value="">Select Source</option>
+                    <option>Nagpur</option>
+                    <option>Wardha</option>
+                    <option>Pune</option>
+                    <option>Mumbai</option>
+                    <option>Amravati</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>To</label>
+                <select id="to">
+                    <option value="">Select Destination</option>
+                    <option>Nagpur</option>
+                    <option>Wardha</option>
+                    <option>Pune</option>
+                    <option>Mumbai</option>
+                    <option>Amravati</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- JOURNEY DATE + TIME -->
+        <div class="row">
+            <div class="field">
+                <label>Journey Date</label>
+                <input type="date" id="date">
+            </div>
+
+            <div class="field">
+                <label>Journey Time</label>
+                <input type="time" id="time">
+            </div>
+        </div>
+
+        <button onclick="bookTicket()">Book Ticket</button>
+
+    </div>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+function bookTicket() {
+
+    let passenger = document.getElementById("passenger").value;
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+
+    if (passenger === "" || from === "" || to === "" || date === "" || time === "") {
+        alert("Please fill all details!");
+        return;
+    }
+
+    if (from === to) {
+        alert("From and To cannot be same!");
+        return;
+    }
+
+    document.getElementById("result").innerHTML = `
+        <div class="ticket">
+            <h2>Ticket Booked Successfully!</h2>
+            <p><b>Passenger:</b> ${passenger}</p>
+            <p><b>From:</b> ${from}</p>
+            <p><b>To:</b> ${to}</p>
+            <p><b>Journey Date:</b> ${date}</p>
+  html>
+          <p><b>Journey Time:</b> ${time}</p>
+        </div>
+    `;
+}
+</script>
+
+</body
