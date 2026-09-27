@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online Ticket Booking</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            🎫 TicketBook
+        </div>
+
+        <nav>
+            <a href="#booking">Booking</a>
+            <a href="#history">History</a>
+            <a href="#about">About</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-icon">🎟️</div>
+
+            <h1>ONLINE TICKET BOOKING</h1>
+
+            <p>
+                Book your journey quickly and easily
+            </p>
+
+            <a href="#booking" class="hero-btn">
+                Book Your Ticket →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+
+        <div class="section-title">
+            <span>🎫</span>
+            <h2>Book Your Ticket</h2>
+            <p>Enter your journey details below</p>
+        </div>
+
+
+        <div class="booking-card">
+
+            <form id="bookingForm">
+
+                <!-- Passenger -->
+                <div class="form-group full">
+
+                    <label>
+                        👤 Passenger Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="passengerName"
+                        placeholder="Enter passenger name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- From / Destination -->
+               <!-- From / Destination -->
+<div class="form-row">
+
+    <div class="form-group">
+        <label>📍 From</label>
+
+        <select id="from" required>
+            <option value="">Select departure city</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Pune">Pune</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Yavatmal">Yavatmal</option>
+            <option value="Amravati">Amravati</option>
+
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>📍 Destination</label>
+
+        <select id="destination" required>
+            <option value="">Select destination city</option>
+            
+            <option value="Nagpur">Nagpur</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Pune">Pune</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Ratnagiri">Ratnagiri</option>
+            <option value="Akola">Akola</option>
+            <option value="Thane">Thane</option>
+            <option value="Hyderabad">Hyderabad</option>
+        </select>
+    </div>
+
+</div>
+
+
+<!-- Journey Date / Journey Time -->
+<div class="form-row">
+
+    <div class="form-group">
+        <label>📅 Journey Date</label>
+
+        <input
+            type="date"
+            id="journeyDate"
+            required
+        >
+    </div>
+
+
+    <div class="form-group">
+        <label>🕐 Journey Time</label>
+
+        <div class="time-select">
+
+            <select id="journeyHour" required>
+                <option value="">Hour</option>
+                <script>
+                    for (let i = 1; i <= 12; i++) {
+                        document.write(
+                            `<option value="${i}">${String(i).padStart(2, '0')}</option>`
+                        );
+                    }
+                </script>
+            </select>
+
+            <span>:</span>
+
+            <select id="journeyMinute" required>
+                <option value="">Minute</option>
+                <script>
+                    for (let i = 1; i <= 60; i++) {
+                        document.write(
+                            `<option value="${i}">${String(i).padStart(2, '0')}</option>`
+                        );
+                    }
+                </script>
+            </select>
+
+            <select id="ampm" required>
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Transport / Seat Type -->
+<div class="form-row">
+
+    <div class="form-group">
+        <label>🚆 Transport</label>
+
+        <select id="transport">
+            <option value="Train">🚆 Train</option>
+            <option value="Bus">🚌 Bus</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label>💺 Seat Type</label>
+
+        <select id="seatType">
+            <option value="General">General</option>
+            <option value="Sleeper">Sleeper</option>
+            <option value="AC">AC</option>
+        </select>
+    </div>
+
+</div>
+
+
+<!-- Booked Ticket Button -->
+<div class="button-row">
+
+    <button type="submit" class="book-btn">
+        🎟️ BOOK TICKET
+    </button>
+
+</div>
+
+    </section>
+
+
+    <!-- Queue Status -->
+    <section class="queue-section">
+
+        <div class="queue-card">
+
+            <div class="queue-icon">
+                📋
+            </div>
+
+            <div>
+
+                <h3>Booking Queue</h3>
+
+                <p>
+                    Tickets are processed using
+                    <strong>FIFO Queue</strong>
+                </p>
+
+            </div>
+
+            <div class="queue-count">
+
+                <span id="queueCount">0</span>
+
+                <small>Tickets</small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Booking History -->
+    <section class="history-section" id="history">
+
+        <div class="section-title">
+
+            <span>📋</span>
+
+            <h2>Booking History</h2>
+
+            <p>
+                Your booked tickets appear here
+            </p>
+
+        </div>
+
+
+        <div id="bookingHistory" class="history-container">
+
+            <div class="empty-history">
+
+                <div class="empty-icon">
+                    🎫
+                </div>
+
+                <h3>No Tickets Yet</h3>
+
+                <p>
+                    Book your first ticket to see it here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section class="about-section" id="about">
+
+        <h2>About This Project</h2>
+
+        <p>
+            This Online Ticket Booking system demonstrates
+            the <strong>Queue Data Structure</strong>.
+            Tickets are added to the queue using
+            <strong>Enqueue</strong> and processed in
+            <strong>FIFO (First In First Out)</strong> order.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            🎫 Online Ticket Booking
+        </p>
+
+        <p>
+            Data Structure Project • Queue (FIFO)
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
