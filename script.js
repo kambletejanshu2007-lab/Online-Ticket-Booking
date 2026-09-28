@@ -1,5 +1,3 @@
-// Queue implementation
-// ==========================================
 // ONLINE TICKET BOOKING
 // QUEUE DATA STRUCTURE - FIFO
 // ==========================================
@@ -103,7 +101,13 @@ const journeyTime = `${hour}:${minute} ${ampm}`;
     // Success message
     alert(
         "🎫 Ticket booked successfully!\n\n" +
-        "Your ticket has been added to the booking queue."
+        `Passenger: ${passengerName}\n` +
+        `From: ${from}\n` +
+        `To: ${destination}\n` +
+        `Date: ${journeyDate}\n` +
+        `Time: ${journeyTime}\n` +
+        `Transport: ${transport}\n` +
+        `Seat Type: ${seatType}\n`
     );
 
 });
@@ -256,4 +260,86 @@ function updateQueueCount() {
     document.getElementById("queueCount").textContent =
         bookingQueue.length;
 
+}
+
+// ===============================
+// PAYMENT SYSTEM
+// ===============================
+
+let currentTicket = null;
+let ticketPrice = 100;
+
+
+// UPI PAYMENT
+function openUPIPayment() {
+
+    document.getElementById("paymentModal").style.display = "none";
+
+    document.getElementById("upiModal").style.display = "flex";
+
+    document.getElementById("ticketAmount").innerText = ticketPrice;
+
+    document.getElementById("enteredAmount").value = ticketPrice;
+
+    const upiID = "yourupi@upi";
+
+    const qrData =
+        "upi://pay?pa=" +
+        upiID +
+        "&pn=TicketBook&am=" +
+        ticketPrice +
+        "&cu=INR";
+
+    const qrURL =
+        "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+        encodeURIComponent(qrData);
+
+    document.getElementById("upiQR").src = qrURL;
+}
+
+
+// PAYMENT DONE
+function completePayment() {
+
+    const amount =
+        Number(document.getElementById("enteredAmount").value);
+
+    if (amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+    }
+
+    if (amount !== ticketPrice) {
+        alert("Please enter correct amount: ₹" + ticketPrice);
+        return;
+    }
+
+    document.getElementById("paymentMessage").innerHTML =
+        "✅ Payment Successful!";
+
+    setTimeout(function() {
+
+        closeUPI();
+
+        addTicketToHistory();
+
+    }, 1200);
+}
+
+
+// CLOSE PAYMENT
+function closePayment() {
+    document.getElementById("paymentModal").style.display = "none";
+}
+
+
+// CLOSE UPI
+function closeUPI() {
+    document.getElementById("upiModal").style.display = "none";
+}
+
+
+// CASH PAYMENT
+function cashPayment() {
+    alert("Cash payment selected. Please pay at the counter.");
 }
