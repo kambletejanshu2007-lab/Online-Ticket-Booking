@@ -121,6 +121,7 @@
 </div>
 
 
+
 <!-- Journey Date / Journey Time -->
 <div class="form-row">
 
@@ -156,7 +157,7 @@
             <select id="journeyMinute" required>
                 <option value="">Minute</option>
                 <script>
-                    for (let i = 1; i <= 60; i++) {
+                    for (let i = 0; i <= 60; i++) {
                         document.write(
                             `<option value="${i}">${String(i).padStart(2, '0')}</option>`
                         );
@@ -201,6 +202,25 @@
 </div>
 
 
+
+<!-- Payment Option -->
+<div class="payment-option">
+
+    <h3>💳 Payment Method</h3>
+
+    <div class="payment-buttons">
+
+        <button type="button" onclick="openUPIPayment()">
+            📱 UPI
+        </button>
+
+        <button type="button" onclick="cashPayment()">
+            💵 Cash on Counter
+        </button>
+
+    </div>
+
+</div>
 <!-- Booked Ticket Button -->
 <div class="button-row">
 
@@ -210,7 +230,82 @@
 
 </div>
 
+
     </section>
+
+    <!-- Payment Popup -->
+<div id="paymentModal" class="payment-modal">
+
+    <div class="payment-box">
+
+        <span class="close-payment" onclick="closePayment()">×</span>
+
+        <h2>💳 Payment</h2>
+
+        <p>Select Payment Method</p>
+
+        <div class="payment-methods">
+
+            <button type="button" onclick="openUPIPayment()">
+                📱 UPI
+            </button>
+
+            <button type="button" onclick="cashPayment()">
+                💵 Cash
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- UPI QR Popup -->
+<div id="upiModal" class="payment-modal">
+
+    <div class="payment-box upi-box">
+
+        <span class="close-payment" onclick="closeUPI()">×</span>
+
+        <h2>📱 UPI Payment</h2>
+
+        <p>Scan the QR Code to Pay</p>
+
+        <div class="qr-container">
+
+            <img
+                id="upiQR"
+                src=""
+                alt="UPI QR Code"
+            >
+
+        </div>
+
+        <h3>
+            Amount: ₹<span id="ticketAmount">0</span>
+        </h3>
+
+        <input
+            type="number"
+            id="enteredAmount"
+            placeholder="Enter Amount"
+            min="1"
+        >
+
+        <button
+            type="button"
+            class="payment-done-btn"
+            onclick="completePayment()"
+        >
+            ✅ Payment Done
+        </button>
+
+        <p id="paymentMessage"></p>
+
+    </div>
+
+</div>
 
 
     <!-- Queue Status -->
@@ -318,3 +413,5 @@
 </body>
 
 </html>
+
+
